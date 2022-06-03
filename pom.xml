@@ -15,7 +15,7 @@
 	<name>bootcamp.eureka-server</name>
 	<description>Microservicio Eureka</description>
 	<properties>
-		<docker.image.prefix>microapigateway4441.azurecr.io</docker.image.prefix>
+		<docker.image.prefix>acrmicroservices01.azurecr.io</docker.image.prefix>
 		<jib-maven-plugin.version>3.1.4</jib-maven-plugin.version>
 		<java.version>11</java.version>
 		<spring-cloud.version>2021.0.2</spring-cloud.version>
@@ -109,6 +109,7 @@
 				</executions>
 			</plugin>
 			<!-- sonarqube -->	
+			<!-- azure kubernetes -->
 			<plugin>
 				<artifactId>jib-maven-plugin</artifactId>
 				<groupId>com.google.cloud.tools</groupId>
@@ -121,7 +122,27 @@
 						<image>${docker.image.prefix}/${project.artifactId}</image>
 					</to>
 				</configuration>
-			</plugin>		
+			</plugin>
+			<!-- azure kubernetes -->
+			<!-- checkstyle -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.1.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<consoleOutput>true</consoleOutput>
+					<failsOnError>true</failsOnError>
+					<configLocation>google_checks.xml</configLocation>
+				</configuration>
+			</plugin>
+			<!-- checkstyle -->
 		</plugins>
 	</build>
 	
@@ -142,21 +163,25 @@
 		</profile>
 	</profiles>
 	<!-- sonarqube -->
-	
-	   <reporting>
-	      <plugins>
-	        <plugin>
-	          <groupId>org.apache.maven.plugins</groupId>
-	          <artifactId>maven-checkstyle-plugin</artifactId>
-	          <version>3.1.2</version>
-	          <reportSets>
-	            <reportSet>
-	              <reports>
-	                <report>checkstyle</report>
-	              </reports>
-	            </reportSet>
-	          </reportSets>
-	        </plugin>
-	      </plugins>
-	    </reporting>
+	<!-- checkstyle -->
+   <reporting>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>3.1.2</version>
+          <!--<reportSets>
+            <reportSet>
+              <reports>
+                <report>checkstyle</report>
+              </reports>
+            </reportSet>
+          </reportSets>-->
+          <configuration>
+          	<configLocation>google_checks.xml</configLocation>
+          </configuration>
+        </plugin>
+      </plugins>
+    </reporting>
+    <!-- checkstyle -->
 </project>
