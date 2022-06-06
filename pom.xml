@@ -15,7 +15,7 @@
 	<name>bootcamp.eureka-server</name>
 	<description>Microservicio Eureka</description>
 	<properties>
-		<docker.image.prefix>acrmicroservices01.azurecr.io</docker.image.prefix>
+		<docker.image.prefix>pocrg01pocacrms.azurecr.io</docker.image.prefix>
 		<jib-maven-plugin.version>3.1.4</jib-maven-plugin.version>
 		<java.version>11</java.version>
 		<spring-cloud.version>2021.0.2</spring-cloud.version>
